@@ -505,7 +505,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </footer></p>
+      </footer>
     </div>
   );
 }
