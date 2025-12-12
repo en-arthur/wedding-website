@@ -1,36 +1,133 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Wedding Celebration Website
 
-## Getting Started
+A beautiful, interactive wedding website built with Next.js and Supabase. Guests can view the event schedule, browse photos/videos, upload their own memories, and leave messages.
 
-First, run the development server:
+## Features
+
+- **Event Schedule** - Display wedding program timeline with times and descriptions
+- **Photo & Video Gallery** - Browse all uploaded media in a beautiful grid layout
+- **Upload Functionality** - Guests can upload photos and short videos
+- **Guest Messages** - Comment section for guests to leave wishes and memories
+- **Download Media** - Download any photo or video from the gallery
+- **Persistent Storage** - All data stored in Supabase (PostgreSQL + Storage)
+
+## Design
+
+- **Color Scheme**: Burgundy (#800020), Sage Green (#9CAF88), Beige (#F5E6D3)
+- **Responsive**: Works beautifully on desktop, tablet, and mobile
+- **Clean & Professional**: Modern design with smooth transitions
+
+## Setup Instructions
+
+### 1. Install Dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd wedding-app
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Set Up Supabase
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Follow the detailed instructions in [SUPABASE_SETUP.md](./SUPABASE_SETUP.md)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Quick summary:
+1. Create a Supabase project at [supabase.com](https://supabase.com)
+2. Run the SQL in `supabase-setup.sql` in your Supabase SQL Editor
+3. Copy your project URL and anon key to `.env.local`
 
-## Learn More
+### 3. Configure Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+Create/edit `.env.local` file:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url_here
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. Run Development Server
 
-## Deploy on Vercel
+```bash
+pnpm dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open [http://localhost:3000](http://localhost:3000) to view the website.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tech Stack
+
+- **Framework**: Next.js 16 (React 19)
+- **Styling**: Tailwind CSS 4
+- **Database**: Supabase (PostgreSQL)
+- **Storage**: Supabase Storage
+- **Deployment**: Vercel (recommended)
+
+## Project Structure
+
+```
+wedding-app/
+├── app/
+│   ├── page.js          # Main wedding website
+│   ├── layout.js        # Root layout with metadata
+│   └── globals.css      # Global styles and color scheme
+├── lib/
+│   └── supabase.js      # Supabase client configuration
+├── supabase-setup.sql   # Database schema and policies
+└── .env.local           # Environment variables (not in git)
+```
+
+## Deployment
+
+### Deploy to Vercel
+
+1. Push your code to GitHub
+2. Import project in [Vercel](https://vercel.com)
+3. Add environment variables in Vercel dashboard
+4. Deploy!
+
+Make sure to add your environment variables in Vercel:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+
+## Customization
+
+### Update Event Schedule
+
+Edit the `program` array in `app/page.js`:
+
+```javascript
+const program = [
+  { time: '2:00 PM', event: 'Your Event', description: 'Description' },
+  // Add more events...
+];
+```
+
+### Change Colors
+
+Edit CSS variables in `app/globals.css`:
+
+```css
+:root {
+  --burgundy: #800020;
+  --sage: #9CAF88;
+  --beige: #F5E6D3;
+}
+```
+
+### Update Header Text
+
+Edit the header section in `app/page.js`:
+
+```javascript
+<h1 className="text-5xl font-serif mb-3">Your Names</h1>
+<p className="text-xl opacity-90">Your custom message</p>
+```
+
+## Support
+
+For issues or questions:
+1. Check [SUPABASE_SETUP.md](./SUPABASE_SETUP.md) for setup help
+2. Review Supabase dashboard logs
+3. Check browser console for errors
+
+## License
+
+Private project for personal use.
